@@ -1,0 +1,36 @@
+namespace ConsoleApp_SelectSort
+{
+    internal class Program
+    {
+        public static void DisplayMatrix(int[] A)
+        {
+            foreach (int i in A) Console.Write("{0,4} ", i);
+            Console.WriteLine();
+        }
+        static void Main(string[] args)
+        {
+            int i, t, MaxI;
+            int[] A = new int[10];
+            Random rNum = new Random();
+            //数组A赋值(0~100的随机数)
+            for (i = 0; i < A.Length; i++) A[i] = rNum.Next(101);
+            Console.WriteLine("原始数组: ");
+            DisplayMatrix(A);
+            //选择法递减排序
+            int N = A.Length; //获取数组A的长度N
+            for (int loop = 0; loop <= N - 2; loop++) //外循环进行N-1轮比较
+            {
+                MaxI = loop;
+                for (i = loop; i <= N - 1; i++)  //内循环中在无序数中找最大值
+                    if (A[i] > A[MaxI]) MaxI = i;
+                //最大值与无序数中的第一个元素交换
+                t = A[loop];
+                A[loop] = A[MaxI];
+                A[MaxI] = t;
+            }
+            Console.WriteLine("降序数组: ");
+            DisplayMatrix(A);
+            Console.ReadLine();
+        }
+    }
+}
