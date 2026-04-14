@@ -1,0 +1,42 @@
+namespace ConsoleApp_BubbleSort
+{
+    internal class Program
+    {
+        public static void DisplayMatrix(int[] A)
+        {
+            //打印矩阵
+            foreach (int i in A) Console.Write("{0,4} ", i);
+            Console.WriteLine();
+        }
+
+        static void Main(string[] args)
+        {
+            int i, t;
+            int[] A = new int[10];
+            Random rNum = new Random();
+            for (i = 0; i < A.Length; i++) A[i] = rNum.Next(101);
+            //数组A赋值(0~100的随机数)
+            Console.WriteLine("原始数组: ");
+            DisplayMatrix(A);
+
+            //冒泡排序
+            int N = A.Length;                  //获取数组A的长度N
+            for (int loop = 1; loop <= N - 1; loop++)//外循环进行N-1轮比较
+            {
+                for (i = 0; i <= N - 1 - loop; i++)  //内循环两两比较，小数上浮
+                {
+                    if (A[i] < A[i + 1])
+                    {
+                        t = A[i];
+                        A[i] = A[i + 1];
+                        A[i + 1] = t;
+                    }
+                }
+            }
+
+            Console.WriteLine("降序数组: ");
+            DisplayMatrix(A);  // 打印矩阵
+            Console.ReadKey();
+        }
+    }
+}
